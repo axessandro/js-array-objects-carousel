@@ -29,15 +29,11 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
-
-console.log(images);
-
 // Inport elements
 // Wrappers
-const titleWrappers = document.getElementsByClassName("title-wrappers");
-
-const subtitleWrappers = document.getElementsByClassName("subtitle-wrappers");
-
+const titleWrapper = document.getElementById("title-wrapper");
+const subtitleWrapper = document.getElementById("subtitle-wrapper");
+const carousel = document.getElementById("carousel");
 // Btns
 const prevBtn = document.getElementById("pre-btn");
 const nextBtn = document.getElementById("next-btn");
@@ -56,16 +52,63 @@ const imgsArray = images.map((item)=>{
     return img;
 })
 
-titlesArray.forEach((title, index)=>{
-    titleWrappers[index].innerHTML = `${title}`;
+// For each title
+titlesArray.forEach((thisTitle)=>{
+    titleWrapper.innerHTML += `<h1 class="title-wrappers">${thisTitle}</h1>`;  
+})
+subtitleArray.forEach((thisSubtitle)=>{
+    subtitleWrapper.innerHTML += `<p class="subtitle-wrappers">${thisSubtitle}</p>`
+})
+imgsArray.forEach((thisImg)=>{
+    carousel.innerHTML += `<img src="img/${thisImg}" class="imgs-carousel" alt="">`;
 })
 
-subtitleArray.forEach((subtitle, index)=>{
-    subtitleWrappers[index].innerHTML = `${subtitle}`;
-})
+// Start status
+let position = 0;
+const titleWrappers = document.querySelectorAll(".title-wrappers");
+titleWrappers[position].classList.add("ms-active");
+const subtitleWrappers = document.querySelectorAll(".subtitle-wrappers");
+subtitleWrappers[position].classList.add("ms-active");
+const imgsCarousel = document.querySelectorAll(".imgs-carousel");
+imgsCarousel[position].classList.add("carousel-active");
 
-nextBtn.addEventListener("click", function() {
-    
-    
-    
-})
+// Nav
+// Next-btn
+nextBtn.addEventListener("click", function(){
+     // Remove active 
+     titleWrappers[position].classList.remove("ms-active");
+     subtitleWrappers[position].classList.remove("ms-active");
+     imgsCarousel[position].classList.remove("carousel-active");
+ 
+     // Condiiton increse position
+     if (position < images.length - 1) {
+         position++;
+     } else {
+         position = 0;
+     }
+ 
+     // Add active
+     titleWrappers[position].classList.add("ms-active");
+     subtitleWrappers[position].classList.add("ms-active");
+     imgsCarousel[position].classList.add("carousel-active");
+ });
+ 
+ // Prev-btn
+ prevBtn.addEventListener("click", function(){
+     // Remove active 
+     titleWrappers[position].classList.remove("ms-active");
+     subtitleWrappers[position].classList.remove("ms-active");
+     imgsCarousel[position].classList.remove("carousel-active");
+ 
+     // Condiiton increse position
+     if (position > 0) {
+         position--;
+     } else {
+         position = images.length - 1;
+     }
+ 
+     // Add active
+     titleWrappers[position].classList.add("ms-active");
+     subtitleWrappers[position].classList.add("ms-active");
+     imgsCarousel[position].classList.add("carousel-active");
+ });

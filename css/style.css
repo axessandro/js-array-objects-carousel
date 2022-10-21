@@ -47,9 +47,11 @@ img{
     object-position: center;
 }
 
-.carousel img{
+.imgs-carousel{
     width: 20%;
-    opacity: 0.4;
+    opacity: 0.3;
+    border-top: 5px solid rgba(202, 202, 202, 0);
+
 }
 
 .carousel{
@@ -58,10 +60,9 @@ img{
     background-color: rgb(45, 45, 45);
 }
 
-.carousel .carousel-position{
+.carousel .carousel-active{
     opacity: 1;
-    border: 0.5px solid rgb(202, 202, 202);
-    border-radius: 7px;
+    border-top: 5px solid rgb(202, 202, 202);
 }
 
 .btn-wrapper{
@@ -95,3 +96,11 @@ img{
     font-size: 1.5rem;
 }
 
+.title-wrappers,
+.subtitle-wrappers{
+    display: none;
+}
+
+.ms-active{
+    display: block;
+}
