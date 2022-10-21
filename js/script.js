@@ -31,3 +31,41 @@ const images = [
 ];
 
 console.log(images);
+
+// Inport elements
+// Wrappers
+const titleWrappers = document.getElementsByClassName("title-wrappers");
+
+const subtitleWrappers = document.getElementsByClassName("subtitle-wrappers");
+
+// Btns
+const prevBtn = document.getElementById("pre-btn");
+const nextBtn = document.getElementById("next-btn");
+
+// Data Arrays
+const titlesArray = images.map((item)=>{
+    const title = item.title;
+    return title;
+})
+const subtitleArray = images.map((item)=>{
+    const subtitle = item.text;
+    return subtitle;
+})
+const imgsArray = images.map((item)=>{
+    const img = item.image;
+    return img;
+})
+
+titlesArray.forEach((title, index)=>{
+    titleWrappers[index].innerHTML = `${title}`;
+})
+
+subtitleArray.forEach((subtitle, index)=>{
+    subtitleWrappers[index].innerHTML = `${subtitle}`;
+})
+
+nextBtn.addEventListener("click", function() {
+    
+    
+    
+})
