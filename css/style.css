@@ -1,10 +1,15 @@
 main{
+    min-width: 810px;
     width: 100%;
     min-height: 100vh;
     background-color: rgb(45, 45, 45);
     padding: 2rem 0;
     color: white;
     font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{
