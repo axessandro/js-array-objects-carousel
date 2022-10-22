@@ -2,7 +2,7 @@ main{
     width: 100%;
     min-height: 100vh;
     background-color: rgb(45, 45, 45);
-    padding: 5rem 0;
+    padding: 2rem 0;
     color: white;
     font-family: 'Rubik', sans-serif;
 }
@@ -28,13 +28,13 @@ p{
 .ms-container{
     min-width: 700px;
     width: 60%;
-    height: 700px;
+    height: 600px;
     margin: auto;
     box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.2);
 }
 
 .bigger-container{
-    height: 550px;
+    height: 500px;
     background-color: rgb(70, 146, 121);
     width: 100%; 
     
@@ -55,7 +55,7 @@ img{
 }
 
 .carousel{
-    height: 150px;
+    height: 100px;
     display: flex;
     background-color: rgb(45, 45, 45);
 }
@@ -98,6 +98,10 @@ img{
 
 .title-wrappers,
 .subtitle-wrappers{
+    display: none;
+    
+}
+.main-content{
     display: none;
 }
 

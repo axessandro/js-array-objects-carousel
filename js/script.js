@@ -34,9 +34,7 @@ const images = [
 const titleWrapper = document.getElementById("title-wrapper");
 const subtitleWrapper = document.getElementById("subtitle-wrapper");
 const carousel = document.getElementById("carousel");
-// Btns
-const prevBtn = document.getElementById("pre-btn");
-const nextBtn = document.getElementById("next-btn");
+const mainWrapper = document.getElementById("main-img"); 
 
 // Data Arrays
 const titlesArray = images.map((item)=>{
@@ -52,7 +50,6 @@ const imgsArray = images.map((item)=>{
     return img;
 })
 
-// For each title
 titlesArray.forEach((thisTitle)=>{
     titleWrapper.innerHTML += `<h1 class="title-wrappers">${thisTitle}</h1>`;  
 })
@@ -61,6 +58,7 @@ subtitleArray.forEach((thisSubtitle)=>{
 })
 imgsArray.forEach((thisImg)=>{
     carousel.innerHTML += `<img src="img/${thisImg}" class="imgs-carousel" alt="">`;
+    mainWrapper.innerHTML += `<img src="img/${thisImg}" alt="" class="main-content">`;
 })
 
 // Start status
@@ -71,14 +69,98 @@ const subtitleWrappers = document.querySelectorAll(".subtitle-wrappers");
 subtitleWrappers[position].classList.add("ms-active");
 const imgsCarousel = document.querySelectorAll(".imgs-carousel");
 imgsCarousel[position].classList.add("carousel-active");
+const mainImgs = document.querySelectorAll(".main-content");
+mainImgs[position].classList.add("ms-active");
 
 // Nav
+// Btns
+const prevBtn = document.getElementById("pre-btn");
+const nextBtn = document.getElementById("next-btn");
 // Next-btn
-nextBtn.addEventListener("click", function(){
-     // Remove active 
-     titleWrappers[position].classList.remove("ms-active");
-     subtitleWrappers[position].classList.remove("ms-active");
-     imgsCarousel[position].classList.remove("carousel-active");
+ nextBtn.addEventListener("click", directionRight);
+ 
+ // Prev-btn
+ prevBtn.addEventListener("click", directionReverse);
+
+//  AUTOPLAY
+const reverseBtn = document.getElementById("reverse-btn");
+const stopBtn = document.getElementById("stop-btn");
+
+let autoplayDirection = true;
+let autoplayStatus = true;
+let autoplay = setInterval(directionRight, 3000);
+
+// reverse btn
+reverseBtn.addEventListener("click", function(){
+    
+    if (autoplayDirection) {
+        autoplayDirection = false;
+        clearInterval(autoplay);
+        autoplay = setInterval(directionReverse, 3000)
+    } else {
+        autoplayDirection = true;
+        clearInterval(autoplay);
+        autoplay = setInterval(directionRight, 3000)
+    }
+    
+})
+
+// stop btn
+stopBtn.addEventListener("click", function(){
+
+    if(autoplayStatus){
+        autoplayStatus = false;
+        stopBtn.innerHTML = "Avvia lo scorrimento";
+        clearInterval(autoplay)
+    } else{
+        autoplayStatus = true;
+        if (autoplayDirection) {
+            autoplay = setInterval(directionReverse, 3000);
+        } else {
+            autoplay = setInterval(directionRight, 3000);
+        }
+    }
+})
+
+
+
+// FUNCITIONS-----------------------------------
+/**
+ * Description: Left direction scroll carousel
+ *
+ */
+function directionReverse(params) {
+    // Remove active 
+    titleWrappers[position].classList.remove("ms-active");
+    subtitleWrappers[position].classList.remove("ms-active");
+    imgsCarousel[position].classList.remove("carousel-active");
+    mainImgs[position].classList.remove("ms-active");
+    
+     // Condiiton increse position
+     if (position > 0) {
+         position--;
+     } else {
+         position = images.length - 1;
+     }
+    
+     // Add active
+    titleWrappers[position].classList.add("ms-active");
+    subtitleWrappers[position].classList.add("ms-active");
+    imgsCarousel[position].classList.add("carousel-active");
+    mainImgs[position].classList.add("ms-active");
+}
+
+/**
+ * Description: Right direction scroll carousel
+ *
+ */
+function directionRight() {
+    // Remove active 
+    titleWrappers[position].classList.remove("ms-active");
+    subtitleWrappers[position].classList.remove("ms-active");
+    imgsCarousel[position].classList.remove("carousel-active");
+    mainImgs[position].classList.remove("ms-active");
+
  
      // Condiiton increse position
      if (position < images.length - 1) {
@@ -88,27 +170,10 @@ nextBtn.addEventListener("click", function(){
      }
  
      // Add active
-     titleWrappers[position].classList.add("ms-active");
-     subtitleWrappers[position].classList.add("ms-active");
-     imgsCarousel[position].classList.add("carousel-active");
- });
- 
- // Prev-btn
- prevBtn.addEventListener("click", function(){
-     // Remove active 
-     titleWrappers[position].classList.remove("ms-active");
-     subtitleWrappers[position].classList.remove("ms-active");
-     imgsCarousel[position].classList.remove("carousel-active");
- 
-     // Condiiton increse position
-     if (position > 0) {
-         position--;
-     } else {
-         position = images.length - 1;
-     }
- 
-     // Add active
-     titleWrappers[position].classList.add("ms-active");
-     subtitleWrappers[position].classList.add("ms-active");
-     imgsCarousel[position].classList.add("carousel-active");
- });
+    titleWrappers[position].classList.add("ms-active");
+    subtitleWrappers[position].classList.add("ms-active");
+    imgsCarousel[position].classList.add("carousel-active");
+    mainImgs[position].classList.add("ms-active");
+}
+
+
