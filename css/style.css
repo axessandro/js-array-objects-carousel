@@ -28,6 +28,7 @@ p{
 .text-wrapper{
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
 }
 
 .ms-container{

@@ -1,11 +1,3 @@
-// Milestone 0:
-// Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
-// Milestone 1:
-// Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-// Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
-// Milestone 2:
-// Aggiungere il **ciclo infinito** del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
-
 const images = [
     {
         image: 'img/01.webp',
@@ -86,19 +78,19 @@ const nextBtn = document.getElementById("next-btn");
 const reverseBtn = document.getElementById("reverse-btn");
 const stopBtn = document.getElementById("stop-btn");
 
-let autoplayDirection = true;
+let autoplayForward = true;
 let autoplayStatus = true;
 let autoplay = setInterval(directionRight, 3000);
 
 // reverse btn
 reverseBtn.addEventListener("click", function(){
     
-    if (autoplayDirection) {
-        autoplayDirection = false;
+    if (autoplayForward) {
+        autoplayForward = false;
         clearInterval(autoplay);
         autoplay = setInterval(directionReverse, 3000)
     } else {
-        autoplayDirection = true;
+        autoplayForward = true;
         clearInterval(autoplay);
         autoplay = setInterval(directionRight, 3000)
     }
@@ -114,7 +106,9 @@ stopBtn.addEventListener("click", function(){
         clearInterval(autoplay)
     } else{
         autoplayStatus = true;
-        if (autoplayDirection) {
+        stopBtn.innerHTML = "Interrompi lo scorrimento";
+
+        if (autoplayForward) {
             autoplay = setInterval(directionReverse, 3000);
         } else {
             autoplay = setInterval(directionRight, 3000);
